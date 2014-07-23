@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<h4>
+  <%= @project.name %>
+</h4>
+
+<p>
+  <%= @project.description %>
+</p>
+
+<% @notes.each do |note| %>
+  <p><strong><%= note.date.to_formatted_s(:long) if note.date.present? %></strong><br/>
+  <%= simple_format(note.content) %><br/>
+  <%= link_to 'Delete', [@project, note], method: :delete %>
+  </p>
+<% end %>
+
+<%= render 'notes/form' %>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>
