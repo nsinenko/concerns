@@ -1,0 +1,33 @@
+language: ruby
+cache:
+  - bundler
+rvm:
+  - 2.1.1
+  - 2.0.0
+bundler_args: -j4 --without development production --quiet
+branches:
+  only:
+    - master
+env:
+  - TEST_SUITE="spec/features/[a-f]* -t ~unstable"
+  - TEST_SUITE="spec/features/[g-z]* -t ~unstable"
+  - TEST_SUITE="spec/controllers -t ~unstable"
+  - TEST_SUITE="spec/models/[a-f]* -t ~unstable"
+  - TEST_SUITE="spec/models/[g-z]* -t ~unstable"
+  - TEST_SUITE="spec/routing spec/api spec/services spec/lib spec/views spec/creators spec/reports spec/helpers -t ~unstable"
+  - TEST_SUITE="spec -t unstable"
+notifications:
+  email:
+    - aacdev@jobready.com.au
+  hipchat: 83906daf46b0ce558ce21f13353861@Active (AAC)
+before_script:
+  - cp config/database.yml.travis config/database.yml
+  - bundle exec rake db:create db:schema:load RAILS_ENV=test
+  - sudo apt-get install pdftk
+  - git clone https://github.com/PerformanceHorizonGroup/csv-split.git /tmp/csv-split
+  - cd /tmp/csv-split
+  - make
+  - sudo make install
+  - cd -
+script:
+  - bundle exec rspec $TEST_SUITE
