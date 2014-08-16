@@ -4,11 +4,8 @@ source 'https://rubygems.org'
 gem 'rails', '~> 4.1'
 
 # social integration
-gem 'foursquare2'
-gem 'google_places'
 gem 'devise'
 
-#  gem 'pg'
 gem 'pg'
 
 group :development do
@@ -39,15 +36,13 @@ end
 # Use Foundation CSS framework
 gem 'foundation-rails'
 
-# User Ember.js for front end
-# gem 'ember-rails'
-# gem 'ember-source', '1.3.0' # or the version you need
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
+gem 'haml-rails'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails'
 #
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -58,21 +53,12 @@ gem 'turbolinks'
 gem 'font-awesome-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+# gem 'jbuilder', '~> 1.2'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
-
 # Use unicorn as the app server
 gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]

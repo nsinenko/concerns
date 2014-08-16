@@ -1,0 +1,22 @@
+%p#notice= notice
+
+%h4= @project.name
+
+%p= @project.description
+
+%ul#goals
+- @project.goals.each do |goal|
+  %li
+    = check_box_tag "goal_#{goal.id}", goal.done
+    = label_tag "goal_#{goal.id}", goal.name
+
+- @notes.each do |note|
+  %p
+    %strong= note.date.to_formatted_s(:long) if note.date.present?
+    = simple_format(note.content)
+    = link_to 'Delete', [@project, note], method: :delete
+
+= render 'notes/form'
+
+= link_to 'Edit', edit_project_path(@project)
+= link_to 'Back', projects_path
